@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import User from "./User";
 
 const { Schema, model } = mongoose;
 
@@ -42,3 +41,5 @@ const transactionSchema = new mongoose.Schema(
   },
   { timestamps: true }
 );
+
+export default mongoose.model("Transaction", transactionSchema);
