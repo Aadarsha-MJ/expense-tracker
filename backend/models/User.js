@@ -2,8 +2,7 @@ import mongoose from "mongoose";
 
 const userSchema = new mongoose.Schema({
   username: { type: String, required: true },
-  email: { type: String, required: true },
-  password: {
+  email: {
     type: String,
     required: true,
     unique: true,
@@ -14,6 +13,7 @@ const userSchema = new mongoose.Schema({
       message: "Invalid email address format",
     },
   },
+  password: { type: String, required: true },
 });
 
 export default mongoose.model("User", userSchema);
