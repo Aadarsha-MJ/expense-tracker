@@ -1,16 +1,29 @@
 import dotenv from "dotenv";
 import express from "express";
+import cors from "cors";
 import connectDB from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import transactionRoutes from "./routes/transactionRoutes.js";
 
-dotenv.config(); // Loading environment variables from .env file
+// Loading environment variables from .env file
+dotenv.config();
 
-const app = express(); // Creating an instance of an express application
+// Creating an instance of an express application
+const app = express();
 
-connectDB(); // Extablishes connection to MongoDB database
+// Extablishes connection to MongoDB database
+connectDB();
 
-app.use(express.json()); // Middleware to parse incoming requests as JSON
+// Enabling cors to specific frontend
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    methods: ["GET", "POST", "PUT"],
+  })
+);
+
+// Middleware to parse incoming requests as JSON
+app.use(express.json());
 
 // Routes
 app.use("/api/users", userRoutes);
